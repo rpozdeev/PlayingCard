@@ -1,11 +1,11 @@
-    import XCTest
-    @testable import PlayingCard
+import XCTest
 
-    final class PlayingCardTests: XCTestCase {
-        func testExample() {
-            // This is an example of a functional test case.
-            // Use XCTAssert and related functions to verify your tests produce the correct
-            // results.
-            XCTAssertEqual(PlayingCard().text, "Hello, World!")
-        }
-    }
+#if !os(macOS)
+public func allTests() -> [XCTestCaseEntry] {
+    return [
+        testCase(CardTests.allTests),
+        testCase(RankTests.allTests),
+        testCase(SuitTests.allTests),
+    ]
+}
+#endif
